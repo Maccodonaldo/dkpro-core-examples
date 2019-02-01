@@ -6,6 +6,11 @@ usable as is.
 
 This branch uses DKPro Core version 1.9.0-SNAPSHOT.
 
+This Repository adapts the code to test the dkpro pipline command line tool. 
+
+
+## This repository is only for testing purposes of a dkpro web service automation tool 
+## For examples of DKPRO use the forked repository
 ## Content 
 
 So far, *dkpro-core-examples* comprises the following examples:
