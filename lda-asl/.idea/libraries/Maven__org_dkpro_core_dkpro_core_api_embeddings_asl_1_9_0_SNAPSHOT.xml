@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.dkpro.core:dkpro-core-api-embeddings-asl:1.9.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/dkpro/core/dkpro-core-api-embeddings-asl/1.9.0-SNAPSHOT/dkpro-core-api-embeddings-asl-1.9.0-20171220.201909-148.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/dkpro/core/dkpro-core-api-embeddings-asl/1.9.0-SNAPSHOT/dkpro-core-api-embeddings-asl-1.9.0-20171220.201909-148-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/dkpro/core/dkpro-core-api-embeddings-asl/1.9.0-SNAPSHOT/dkpro-core-api-embeddings-asl-1.9.0-20171220.201909-148-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

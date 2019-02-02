@@ -53,6 +53,7 @@ public class Dl4jEmbeddingsTrainerTest
         
         // Train model
         File model = new File(targetFolder, "model.bin");
+
         CollectionReaderDescription trainReader = createReaderDescription(
                 Conll2002Reader.class,
                 Conll2002Reader.PARAM_PATTERNS, split.getTrainingFiles(),

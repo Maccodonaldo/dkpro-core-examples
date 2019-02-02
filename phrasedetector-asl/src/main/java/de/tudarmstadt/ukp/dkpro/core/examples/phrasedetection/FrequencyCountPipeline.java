@@ -38,6 +38,7 @@ import static org.apache.uima.fit.factory.CollectionReaderFactory.createReaderDe
  *
  * @see PhraseAnnotationPipeline
  */
+
 public class FrequencyCountPipeline
 {
     static final String SOURCE_LOCATION = "src/main/resources/texts/*";

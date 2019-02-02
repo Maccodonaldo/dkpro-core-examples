@@ -17,21 +17,28 @@
  ******************************************************************************/
 package de.tudarmstadt.ukp.dkpro.core.examples.lda;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import de.tudarmstadt.ukp.dkpro.core.io.text.TextReader;
 import de.tudarmstadt.ukp.dkpro.core.mallet.lda.MalletLdaTopicModelInferencer;
 import de.tudarmstadt.ukp.dkpro.core.mallet.type.TopicDistribution;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 import de.tudarmstadt.ukp.dkpro.core.stopwordremover.StopWordRemover;
 import org.apache.uima.UIMAException;
+import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineDescription;
 import org.apache.uima.collection.CollectionReaderDescription;
 import org.apache.uima.fit.component.CasDumpWriter;
+import org.apache.uima.fit.factory.JCasFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
 import org.apache.uima.jcas.JCas;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngineDescription;
 import static org.apache.uima.fit.factory.CollectionReaderFactory.createReaderDescription;
@@ -88,5 +95,42 @@ public class LdaInferencePipeline
         for (JCas jcas : SimplePipeline.iteratePipeline(reader, segmenter, stopwordRemover, lda)) {
             select(jcas, TopicDistribution.class).forEach(System.out::println);
         }
+    }
+
+    public JCas run(String jsonString) throws Exception {
+
+        // setup gson parser
+        JsonParser parser = new JsonParser();
+        JsonElement jsonElement = parser.parse(jsonString);
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+        // get parameters out of the json object
+        String language = jsonObject.get("language").toString();
+        String text = jsonObject.get("text").toString();
+
+
+        // create analysis engines
+
+
+        // List all engines in an iterator
+        List<AnalysisEngine> engines = new ArrayList<>();
+        engines.add(segmenter);
+        engines.add(ngramWriter);
+
+        // JWeb1TIndexer indexCreator = new JWeb1TIndexer(outpcd .. utLocation, 3);
+        JCas jcas = process(text, language, engines);
+
+        return jcas;
+    }
+
+    // return Jcas after iterated over all given engines
+    private JCas process(String aText, String aLanguage, List<AnalysisEngine> engines) throws UIMAException {
+
+        JCas jcas = JCasFactory.createText(aText, aLanguage);
+
+        for (AnalysisEngine engine : engines)
+            engine.process(jcas);
+
+        return jcas;
     }
 }
